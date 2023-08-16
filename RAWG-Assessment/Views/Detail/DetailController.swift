@@ -13,6 +13,8 @@ final class DetailController: BaseViewController {
         return view
     }()
     
+    private var favoriteBarButtonItem: UIBarButtonItem!
+    
     private var viewModel: DetailViewModel!
     
     init(gameID: Int) {
@@ -25,6 +27,9 @@ final class DetailController: BaseViewController {
         title = "Detail"
         navigationItem.backBarButtonItem?.title = ""
         addMainView(mainView: mainView)
+        
+        favoriteBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+        navigationItem.rightBarButtonItem = favoriteBarButtonItem
     }
     
     required init?(coder: NSCoder) {
@@ -48,5 +53,15 @@ final class DetailController: BaseViewController {
         viewModel.$isLoading.receive(on: DispatchQueue.main).sink { [unowned self] value in
             self.mainView.setLoadingState(value)
         }.store(in: &disposables)
+        
+        viewModel.$isFavorited.receive(on: DispatchQueue.main).sink { [unowned self] value in
+            guard let value else { return }
+            self.favoriteBarButtonItem.image = UIImage(systemName: value ? "heart.fill" : "heart")
+        }.store(in: &disposables)
+    }
+    
+    @objc private func favoriteAction() {
+        guard let isFavorited = viewModel.isFavorited else { return }
+        isFavorited ? viewModel.deleteGameFromFavorites() : viewModel.addGameToFavorites()
     }
 }

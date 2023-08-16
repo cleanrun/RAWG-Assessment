@@ -38,6 +38,11 @@ extension DependencyContainer {
         get { Self.self[WebserviceDependencyKey.self] }
         set { Self.self[WebserviceDependencyKey.self] = newValue }
     }
+    
+    var coreDataManager: CoreDataManager {
+        get { Self.self[CoreDataManagerDependencyKey.self] }
+        set { Self.self[CoreDataManagerDependencyKey.self] = newValue }
+    }
 }
 
 @propertyWrapper struct Dependency<T> {

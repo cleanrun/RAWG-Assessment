@@ -106,8 +106,8 @@ final class DetailView: BaseView {
         if let imageURL = URL(string: game.backgroundImage ?? "") {
             DispatchQueue.global(qos: .userInitiated).async {
                 let imageFromURL = UIImage.downloadImageFromURL(imageURL)
-                DispatchQueue.main.async { [unowned self] in
-                    self.bannerImageView.image = imageFromURL
+                DispatchQueue.main.async { [weak self] in
+                    self?.bannerImageView.image = imageFromURL
                 }
             }
         }
@@ -118,7 +118,7 @@ final class DetailView: BaseView {
         let descriptionAttributedText = game.description?.htmlFormattedAttributedString()
         descriptionLabel.attributedText = descriptionAttributedText
         
-        ratingAndPlayedLabel.text = "⭐️ \(game.rating) 🎮 \(game.playtime)"
+        ratingAndPlayedLabel.text = "⭐️ \(game.rating) 🎮 \(game.playtime ?? 0)"
     }
     
     func setLoadingState(_ isLoading: Bool) {

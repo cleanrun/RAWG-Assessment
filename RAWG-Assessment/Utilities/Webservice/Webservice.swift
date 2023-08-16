@@ -17,7 +17,7 @@ enum WebserviceError: Error {
 }
 
 final class Webservice {
-    private let API_KEY = ""
+    private let API_KEY = "5a32bbcf0b3246d88db60c0fe4432fbb"
     private let ENDPOINT = "https://api.rawg.io/api/games"
     
     func request<T: Decodable>(gameId: Int = 0, page: Int = 0, searchQuery: String? = nil, responseType: T.Type) async throws -> T {

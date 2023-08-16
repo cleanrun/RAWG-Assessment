@@ -10,10 +10,18 @@ import Combine
 
 final class FavoriteViewModel: ViewModel {
     @Dependency(\.webservice) var webservice: Webservice
+    @Dependency(\.coreDataManager) var coreDataManager: CoreDataManager
     private weak var viewController: FavoriteController?
+    
+    @Published private(set) var savedGames: [Game] = []
     
     init(vc: FavoriteController) {
         viewController = vc
+    }
+    
+    func getSavedGames() {
+        savedGames.removeAll()
+        savedGames = coreDataManager.getAllGames()
     }
     
 }
