@@ -19,6 +19,7 @@ final class HomeController: BaseViewController {
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
+        searchController.searchBar.searchTextField.backgroundColor = .white
         return searchController
     }()
     
@@ -39,7 +40,7 @@ final class HomeController: BaseViewController {
         super.loadView()
         navigationItem.title = "Games For You"
         addMainView(mainView: mainView)
-        mainView.setTableViewDelegateAndRegisterCell(delegate: self)
+        mainView.setTableViewDelegateAndRegisterCell(delegate: self, prefetchDataSource: self)
         
         dataSource = DataSource(tableView: mainView.listTableView, cellProvider: {
              tableView, indexPath, item in

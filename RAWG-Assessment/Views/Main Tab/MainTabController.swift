@@ -18,8 +18,8 @@ final class MainTabController: UITabBarController {
         tabBar.tintColor = MAIN_COLOR
         
         viewControllers = [
-            createNavController(for: HomeController(), title: "Home", activeIcon: "house", inactiveIcon: "house.fill"),
-            createNavController(for: FavoriteController(), title: "Favorite", activeIcon: "heart", inactiveIcon: "heart.fill"),
+            createNavController(for: HomeController(), title: "Home", activeIcon: "house.fill", inactiveIcon: "house"),
+            createNavController(for: FavoriteController(), title: "Favorite", activeIcon: "heart.fill", inactiveIcon: "heart"),
         ]
         
         tabBar.isTranslucent = true

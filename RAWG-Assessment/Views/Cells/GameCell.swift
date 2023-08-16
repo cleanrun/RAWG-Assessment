@@ -94,6 +94,7 @@ final class GameCell: UITableViewCell, ReusableView {
     }
     
     func setData(_ game: Game) {
+        representedID = game.representedID
         titleLabel.text = game.name
         releaseDateLabel.text = "Release date: \(game.released ?? "-")"
         ratingLabel.text = "⭐️ \(game.rating)"

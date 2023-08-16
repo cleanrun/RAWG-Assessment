@@ -33,7 +33,7 @@ class FavoriteController: BaseViewController {
         super.loadView()
         navigationItem.title = "Favorite Games"
         addMainView(mainView: mainView)
-        mainView.setTableViewDelegateAndRegisterCell(delegate: self)
+        mainView.setTableViewDelegateAndRegisterCell(delegate: self, prefetchDataSource: self)
         
         dataSource = DataSource(tableView: mainView.listTableView, cellProvider: {
              tableView, indexPath, item in

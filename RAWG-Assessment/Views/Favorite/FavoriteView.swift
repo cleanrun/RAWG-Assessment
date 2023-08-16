@@ -26,8 +26,9 @@ final class FavoriteView: BaseView {
         ])
     }
     
-    func setTableViewDelegateAndRegisterCell(delegate: UITableViewDelegate) {
+    func setTableViewDelegateAndRegisterCell(delegate: UITableViewDelegate, prefetchDataSource: UITableViewDataSourcePrefetching) {
         listTableView.delegate = delegate
+        listTableView.prefetchDataSource = prefetchDataSource
         listTableView.register(GameCell.self, forCellReuseIdentifier: GameCell.reuseIdentifier)
     }
 }

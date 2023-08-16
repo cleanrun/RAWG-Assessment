@@ -29,6 +29,7 @@ final class DetailController: BaseViewController {
         addMainView(mainView: mainView)
         
         favoriteBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+        favoriteBarButtonItem.tintColor = .white
         navigationItem.rightBarButtonItem = favoriteBarButtonItem
     }
     
